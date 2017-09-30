@@ -1,0 +1,100 @@
+﻿@model UniversityMgtApp.Models.Course
+
+@{
+    ViewBag.Title = "Save";
+}
+
+<style>
+    fieldset.scheduler-border {
+        border: solid 1px #DDD !important;
+        padding: 0 55px;
+        border-bottom: none;
+        border-radius: 10px;
+        width: 600px;
+    }
+
+    legend.scheduler-border {
+        width: auto !important;
+        border: none;
+        font-size: 20px;
+        font-weight: bold;
+    }
+</style>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true)
+
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Save Course</legend>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CourseCode, new { @class = "col-md-3" })
+                <div class="col-md-7">
+                    @Html.TextBoxFor(model => model.CourseCode, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CourseCode, "", new { @class = "validation" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CourseName, new { @class = "col-md-3" })
+                <div class="col-md-7">
+                    @Html.TextBoxFor(model => model.CourseName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "validation" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Credit, new { @class = "col-md-3" })
+                <div class="col-md-7">
+                    @Html.TextBoxFor(model => model.Credit, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Credit, "", new { @class = "validation" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "col-md-3" })
+                <div class="col-md-7">
+                    @Html.TextAreaFor(model => model.Description, 3, 20, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "validation" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DepartmentId, new { @class = "col-md-3" })
+                <div class="col-md-7">
+                    @Html.DropDownListFor(model => model.DepartmentId, new SelectList(ViewBag.Department, "DepartmentId", "DepartmentName"),"--Select Department--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "validation" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SemesterId, new { @class = "col-md-3" })
+                <div class="col-md-7">
+                    @Html.DropDownListFor(model => model.SemesterId, new SelectList(ViewBag.Semester, "SemesterId", "SemesterName"),"--Select Semester--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SemesterId, "", new { @class = "validation" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-7">
+                    <input type="submit" value="Save" class="btn btn-default"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-7">
+                    <span style="color:green; font-weight:bold;">@ViewBag.Success</span>
+                    <span style="color:red; font-weight:bold;">@ViewBag.Exist</span>
+                </div>
+            </div>
+        </fieldset>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

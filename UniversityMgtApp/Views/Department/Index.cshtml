@@ -1,0 +1,53 @@
+﻿@model IEnumerable<UniversityMgtApp.Models.Department>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    fieldset.scheduler-border {
+        border: solid 1px #DDD !important;
+        padding: 0px 35px;
+        border-bottom: none;
+        border-radius: 10px;
+        width: 600px;
+    }
+
+    legend.scheduler-border {
+        width: auto !important;
+        border: none;
+        font-size: 20px;
+        font-weight:bold;
+    }
+
+    table th{
+        text-align:center;
+    }
+</style>
+
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">View All Departments</legend>
+    <table class="table table-bordered">
+        <tr style="background-color:#e9e9e9;">
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                </td>
+            </tr>
+        }
+
+    </table>
+</fieldset>

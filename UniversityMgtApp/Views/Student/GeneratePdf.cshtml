@@ -1,0 +1,67 @@
+﻿@using UniversityMgtApp.Models
+@model UniversityMgtApp.Models.Student
+
+@{
+    ViewBag.Title = "GeneratePdf";
+    Layout = null;
+    List<StudentResult> studentResults = ViewBag.ResultDetail;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<style>
+    .resultsheet {
+        width: 960px;
+        padding: 10px 70px;
+    }
+</style>
+
+<div class="resultsheet" style="text-align: center;">
+    <span style="font-size: 36px;">University of BITM & Technology</span> <br />
+    <span style="font-size: 26px;">Dhaka, Bangladesh</span>
+    <hr style="border-style: double;"/>
+</div>
+<div class="resultsheet">
+
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 200px;">Student Name</td>
+            <td>@Model.StudentName</td>
+        </tr>
+        <tr>
+            <td>Registration Number</td>
+            <td>@Model.RegNumber</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <td>Department</td>
+            <td>@Model.DepartmentName</td>
+        </tr>
+    </table>
+    <hr style="border: dot-dot-dash 1px black;"/>
+
+    <div style="width: 400px; margin: 0 auto;">
+        <table style="width: 100%;" class="table table-striped">
+            <tr>
+                <th>Course Code</th>
+                <th>Name</th>
+                <th>Grade Letter</th>
+            </tr>
+            @foreach (var item in studentResults)
+            {
+                <tr>
+                    <td>@item.CourseCode</td>
+                    <td>@item.CourseName</td>
+                    <td>@item.GradeLetter</td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</div>
+
+
+
+
+
